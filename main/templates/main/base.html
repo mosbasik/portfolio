@@ -1,0 +1,31 @@
+{% load compress %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html class="light">
+    <head>
+        <title>Peter Henry</title>
+
+        <link rel="stylesheet" href="{% static 'project/bootstrap/css/bootstrap.min.css' %}">
+        {% compress css %}
+            <link rel="stylesheet" type="text/scss" href="{% static 'main/css/portfolio.scss' %}">
+        {% endcompress css %}
+
+        {% block css %}
+        {% endblock css %}
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+
+    <body class="">
+        {% include "main/navbar.html" %}
+
+        {% block content %}
+        {% endblock content %}
+
+        <script type="text/javascript" src="{% static 'project/bootstrap/js/bootstrap.min.js' %}"></script>
+
+        {% block js %}
+        {% endblock js %}
+    </body>
+</html>
