@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Project(models):
+class Project(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
@@ -9,7 +9,7 @@ class Project(models):
     url = models.URLField(null=True, blank=True)
 
 
-class Blog(models):
+class Blog(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
