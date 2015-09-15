@@ -60,9 +60,17 @@ $green:     #859900;
 
 
 @mixin accentize($accent1, $accent2) {
-    a, a:active, a:visited, code.url {
+    a {
         color: $accent1;
+        text-decoration: none;
+        &:active, &:visited, code.url {
+            color: $accent1;
+        }
+        &:hover {
+            color: $accent2;
+        }
     }
+
     h1,h2,h3,h4,h5,h6 {
         color:$accent1
     }
@@ -76,6 +84,9 @@ $green:     #859900;
     }
     body {
         background: none;
+    }
+    hr {
+        border-color: $accent1;
     }
 }
 

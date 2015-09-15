@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+# markdown imports and partial setup
+import markdown
+from docutils.core import publish_parts
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -103,9 +107,19 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# Sets up the SASS preparser
+# Set up the SASS preparser
 COMPRESS_PRECOMPILERS = (
     ('text/scss', 'sass --scss {infile} {outfile}'),
+)
+
+
+# Set up the Markdown field
+def render_rest(markup):
+    parts = publish_parts(source=markup, writer_name='html4css1')
+    return parts['fragment']
+
+MARKUP_FIELD_TYPES = (
+    ('markdown', markdown.markdown),
 )
 
 

@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Blog Entries</h1>
+            </div>
+        </div>
+        {% for entry in entries %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2><a href="{% url 'blog_details' entry.year_created entry.month_created entry.day_created entry.slug %}">{{ entry.title }}</a></h2>
+                    {% for section in entry.section_set.all %}
+                        {{ section.body }}
+                    {% endfor %}
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock content %}

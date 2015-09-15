@@ -20,4 +20,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'main.views.home', name='home'),
+
+    url(r'^blog/$', 'main.views.blog_list', name='blog_list'),
+    url(r'^blog/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<entry_slug>[-\w]+)/$', 'main.views.blog_details', name='blog_details'),
 ]

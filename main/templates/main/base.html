@@ -2,9 +2,11 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html class="light">
+<html class="dark">
     <head>
         <title>Peter Henry</title>
+
+        <base target="_blank">
 
         <link rel="stylesheet" href="{% static 'project/bootstrap/css/bootstrap.min.css' %}">
         {% compress css %}
@@ -18,6 +20,7 @@
     </head>
 
     <body class="">
+
         {% include "main/navbar.html" %}
 
         {% block content %}
