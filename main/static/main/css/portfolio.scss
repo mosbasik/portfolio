@@ -25,6 +25,10 @@ $green:     #859900;
   // src: local('/static/main/fonts/menlo-regular.ttf');
 }
 
+.inline-header {
+    display: inline-block;
+}
+
 
 // ==================== solarized light/dark switch ====================
 @mixin rebase($rebase03,

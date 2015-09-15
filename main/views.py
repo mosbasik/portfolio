@@ -16,7 +16,7 @@ def home(request):
 
 def blog_list(request):
     context = {}
-    context['entries'] = Entry.objects.all().order_by('-created')
+    context['entries'] = Entry.objects.filter(kind='Blog').order_by('-display_date')
     return render(request, 'main/blog_list.html', context)
 
 
