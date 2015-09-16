@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'blog_list' %}" target="_self">Blog</a></li>
                 <li><a href="{% url 'project_list' %}" target="_self">Projects</a></li>
-                <li><a href="#" target="_self">About</a></li>
+                <li><a href="{% url 'about' %}" target="_self">About</a></li>
             </ul>
             <form action="" class="navbar-form navbar-right" method="GET" target="_self">
                 <input type="hidden" name="theme" value="{{ inactive_theme }}">

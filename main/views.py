@@ -58,3 +58,7 @@ def project_details(request, year, month, day, entry_slug):
 
     except ProjectEntry.DoesNotExist:
         raise Http404("No entry matches the given query.")
+
+
+def about(request):
+    return render(request, 'main/about.html')

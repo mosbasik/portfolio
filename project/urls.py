@@ -26,4 +26,6 @@ urlpatterns = [
 
     url(r'^projects/$', 'main.views.project_list', name='project_list'),
     url(r'^projects/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/(?P<entry_slug>[-\w]+)/$', 'main.views.project_details', name='project_details'),
+
+    url(r'^about/$', 'main.views.about', name='about'),
 ]
