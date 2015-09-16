@@ -8,17 +8,17 @@ from markupfield.fields import MarkupField
 
 class Entry(models.Model):
 
-    KIND_CHOICES = (
-        ('Blog', 'Blog'),
-        ('Blog', 'Project'),
-    )
+    # KIND_CHOICES = (
+    #     ('Blog', 'Blog'),
+    #     ('Blog', 'Project'),
+    # )
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     display_date = models.DateTimeField()
     title = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='title')
-    kind = models.CharField(choices=KIND_CHOICES, max_length=50)
+    # kind = models.CharField(choices=KIND_CHOICES, max_length=50)
     body = MarkupField(markup_type='markdown', null=True, blank=True)
 
     class Meta:
@@ -42,3 +42,21 @@ class Entry(models.Model):
     @property
     def ordered_sections(self):
         return self.section_set.order_by('order', 'created')
+
+
+class BlogEntry(Entry):
+
+    class Meta:
+        verbose_name_plural = "Blog Entries"
+
+    def __unicode__(self):
+        return "Blog {}".format(self.title)
+
+
+class ProjectEntry(Entry):
+
+    class Meta:
+        verbose_name_plural = "Project Entries"
+
+    def __unicode__(self):
+        return "Project {}".format(self.title)

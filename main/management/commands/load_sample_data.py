@@ -2,7 +2,7 @@
 from django.core.management.base import BaseCommand, CommandError
 
 # local imports
-from main.models import Entry
+from main.models import BlogEntry, ProjectEntry
 
 # python imports
 from dateutil import parser
@@ -14,7 +14,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        Entry.objects.all().delete()
+        BlogEntry.objects.all().delete()
+        ProjectEntry.objects.all().delete()
 
         with open('main/management/commands/sample_data.json', 'r') as f:
             data = json.load(f)
@@ -25,10 +26,18 @@ class Command(BaseCommand):
                     break
 
                 print "Loading entry {}: {}".format(i, entry['entry_title'])
-                new_entry = Entry(
-                    title=entry['entry_title'],
-                    kind=entry['kind'],
-                    display_date=parser.parse(entry['date']),
-                    body=entry['section_1'],
-                )
-                new_entry.save()
+
+                if entry['kind'] == 'Blog':
+                    new_entry = BlogEntry(
+                        title=entry['entry_title'],
+                        display_date=parser.parse(entry['date']),
+                        body=entry['section_1'],
+                    )
+                    new_entry.save()
+                else:
+                    new_entry = ProjectEntry(
+                        title=entry['entry_title'],
+                        display_date=parser.parse(entry['date']),
+                        body=entry['section_1'],
+                    )
+                    new_entry.save()
