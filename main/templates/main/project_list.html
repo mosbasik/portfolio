@@ -12,7 +12,7 @@
         {% for entry in entries %}
             <div class="row">
                 <div class="col-xs-12">
-                    <h2 class="inline-header"><a target="_self" href="{% url 'blog_details' entry.year entry.month entry.day entry.slug %}">{{ entry.title }}</a></h2> <div class="inline-header">{{ entry.display_date }}</div>
+                    <h2 class="inline-header"><a target="_self" href="{% url 'project_details' entry.year entry.month entry.day entry.slug %}">{{ entry.title }}</a></h2> <div class="inline-header">{{ entry.display_date }}</div>
                     {% with entry.ordered_sections|first as section %}
                         <p>{{ section.body|striptags|truncatewords:50 }}</p>
                     {% endwith %}

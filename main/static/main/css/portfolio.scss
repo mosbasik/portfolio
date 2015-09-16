@@ -29,6 +29,10 @@ $green:     #859900;
     display: inline-block;
 }
 
+p img {
+    margin: 10px;
+}
+
 
 // ==================== solarized light/dark switch ====================
 @mixin rebase($rebase03,
