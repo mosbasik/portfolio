@@ -165,3 +165,7 @@ p img {
         filter: alpha(opacity=1); /* Fix to make div clickable in IE */
     }
 }
+
+.btn {
+    border-radius: 0px;
+}
