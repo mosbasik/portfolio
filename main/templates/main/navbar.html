@@ -18,6 +18,10 @@
                 <li><a href="{% url 'project_list' %}" target="_self">Projects</a></li>
                 <li><a href="#" target="_self">About</a></li>
             </ul>
+            <form action="" class="navbar-form navbar-right" method="GET" target="_self">
+                <input type="hidden" name="theme" value="{{ inactive_theme }}">
+                <button type="submit" class="btn btn-default">{{ inactive_theme_name }}</button>
+            </form>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
