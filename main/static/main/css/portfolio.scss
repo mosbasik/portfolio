@@ -56,6 +56,17 @@ $green:     #859900;
         background-color: $rebase02;
         border: none;
     }
+    .btn-default {
+        color:$rebase0;
+        background-color: $rebase03;
+        border: none;
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            background-color: $rebase03;
+        }
+    }
 }
 
 
@@ -70,7 +81,6 @@ $green:     #859900;
             color: $accent2;
         }
     }
-
     h1,h2,h3,h4,h5,h6 {
         color:$accent1
     }
@@ -94,6 +104,9 @@ $green:     #859900;
     }
     hr {
         border-color: $accent1;
+    }
+    .btn-default:active {
+        color: $accent2;
     }
 }
 
