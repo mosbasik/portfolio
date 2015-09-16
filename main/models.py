@@ -27,16 +27,16 @@ class Entry(models.Model):
         return self.title
 
     @property
-    def year_created(self):
-        return str(self.created.year)
+    def year(self):
+        return str(self.display_date.year)
 
     @property
-    def month_created(self):
-        return self.created.strftime('%m')
+    def month(self):
+        return self.display_date.strftime('%m')
 
     @property
-    def day_created(self):
-        return self.created.strftime('%d')
+    def day(self):
+        return self.display_date.strftime('%d')
 
     @property
     def ordered_sections(self):
