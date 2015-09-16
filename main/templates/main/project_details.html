@@ -6,10 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1><a target="_self" href="{% url 'project_details' entry.year entry.month entry.day entry.slug %}">{{ entry.title }}</a></h1>
-                {% for section in entry.ordered_sections %}
-                    {{ section.body }}
-                {% endfor %}
+                <h5>{{ entry.display_date }}</h5>
+                <h1>{{ entry.title }}</h1>
+                {{ entry.body }}
             </div>
         </div>
     </div>
