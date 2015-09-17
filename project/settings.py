@@ -15,7 +15,6 @@ import os
 
 # markdown imports and partial setup
 import markdown
-from docutils.core import publish_parts
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -116,12 +115,25 @@ COMPRESS_PRECOMPILERS = (
 
 
 # Set up the Markdown field
-def render_rest(markup):
-    parts = publish_parts(source=markup, writer_name='html4css1')
-    return parts['fragment']
+def custom_markup(markup):
+    print '\n\ncustom markup function called\n\n'
+    extension_configs = {
+        'markdown.extensions.codehilite': {
+            'pygments_style': 'default',
+        }
+    }
+    extensions = [
+        'markdown.extensions.codehilite',
+    ]
+    return markdown.markdown(
+        markup,
+        extensions=extensions,
+        extension_configs=extension_configs,
+    )
+
 
 MARKUP_FIELD_TYPES = (
-    ('markdown', markdown.markdown),
+    ('custom_markup', custom_markup),
 )
 
 

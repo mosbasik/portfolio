@@ -7,19 +7,13 @@ from markupfield.fields import MarkupField
 
 
 class Entry(models.Model):
-
-    # KIND_CHOICES = (
-    #     ('Blog', 'Blog'),
-    #     ('Blog', 'Project'),
-    # )
-
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     display_date = models.DateTimeField()
     title = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='title')
-    # kind = models.CharField(choices=KIND_CHOICES, max_length=50)
-    body = MarkupField(markup_type='markdown', null=True, blank=True)
+    body = MarkupField(markup_type='custom_markup', null=True, blank=True)
+    display = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Entries"
