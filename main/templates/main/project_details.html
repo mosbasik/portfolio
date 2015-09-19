@@ -3,13 +3,11 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>{{ entry.display_date }}</h5>
-                <h1>{{ entry.title }}</h1>
-                {{ entry.body }}
-            </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>{{ entry.display_date }}</h5>
+            <h1>{{ entry.title }}</h1>
+            {{ entry.body }}
         </div>
     </div>
 {% endblock content %}

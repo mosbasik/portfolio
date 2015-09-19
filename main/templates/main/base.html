@@ -19,12 +19,14 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     </head>
 
-    <body class="">
-
-        {% include "main/navbar.html" %}
-
-        {% block content %}
-        {% endblock content %}
+    <body>
+        <div id="body-contents">
+            {% include "main/navbar.html" %}
+            <div id="content" class="container">
+                {% block content %}{% endblock content %}
+            </div>
+            {% include "main/footer.html" %}
+        </div>
 
         <script type="text/javascript" src="{% static 'project/bootstrap/js/bootstrap.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'main/js/portfolio.js' %}"></script>

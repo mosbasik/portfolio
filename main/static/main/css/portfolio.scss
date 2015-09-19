@@ -52,6 +52,27 @@ $green:     #859900;
     font-style: italic;
 }
 
+// ==================== tearaway footer rules ====================
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#body-contents {
+    min-height: 100%;
+    position: relative;
+}
+#content {
+    padding-bottom: 150px; /* Height of the footer */
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;   /* Height of the footer */
+    line-height: 50px;
+    text-align: center;
+}
 
 // ==================== solarized light/dark switch ====================
 @mixin rebase($rebase03,
@@ -64,7 +85,7 @@ $green:     #859900;
               $rebase3) {
     background-color:$rebase03;
     color:$rebase0;
-    * {
+    body {
         font-family: menlo, monospace;
         color:$rebase0;
         p {
@@ -72,6 +93,7 @@ $green:     #859900;
             margin-bottom: 1em;
         }
     }
+
     h1,h2,h3,h4,h5,h6 {
         color:$rebase1;
         border-color: $rebase0;
@@ -93,6 +115,16 @@ $green:     #859900;
         &:active {
             background-color: $rebase03;
         }
+    }
+    figure, figcaption, #footer {
+        background-color: $rebase02;
+    }
+    figure:hover>figcaption {
+        color: $rebase02;
+    }
+    figcaption p {
+        margin: 5px;
+        margin-top: 0px;
     }
 
     code, pre {
@@ -181,21 +213,27 @@ $green:     #859900;
 }
 
 
-@mixin accentize($accent1, $accent2) {
+@mixin accentize($accent1, $accent2, $accent3) {
     a {
         color: $accent1;
         text-decoration: none;
+        h1,h2,h3,h4,h5,h6 {
+            color:$accent3;
+        }
         &:active, &:visited, code.url {
-            color: $accent1;
+            color: $accent3;
         }
         &:hover {
             color: $accent2;
         }
     }
     h1,h2,h3,h4,h5,h6 {
-        color:$accent1
+        color:$accent1;
     }
     .clickable-entry {
+        h1,h2,h3,h4,h5,h6 {
+            color: $accent3;
+        }
         &:hover {
             h1,h2,h3,h4,h5,h6 {
                 color: $accent2;
@@ -219,19 +257,27 @@ $green:     #859900;
     .btn-default:active {
         color: $accent2;
     }
+    figure:hover {
+        &, &>figcaption {
+            background-color: $accent2;
+        }
+    }
+    .icon-bar {
+        background-color: $accent1;
+    }
 }
 
 
 /* light is default mode, so pair with general html definition */
 .light {
     @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03);
-    @include accentize($blue, $yellow);
+    @include accentize($blue, $yellow, $cyan);
 }
 
 
 .dark {
     @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3);
-    @include accentize($orange, $cyan);
+    @include accentize($orange, $cyan, $yellow);
 }
 
 
@@ -247,22 +293,49 @@ html * {
     display: inline-block;
 }
 
-p img {
-    margin: 10px;
-}
-
-.row-entry {
-    margin-top: 1em;
-    margin-bottom: 2em;
-    h1,h2,h3,h4,h5,h6, p {
-        margin-top: 0px;
-        margin-bottom: 0px;
+figure {
+    padding: 5px;
+    font-size: 85%;
+    font-style: italic;
+    display: table;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &.right {
+        width: 25%;
+        float: right;
+        margin-left: 10px;
+    }
+    &.left {
+        width: 25%;
+        float: left;
+        margin-right: 15px;
     }
 }
 
-.clickable-entry {
-    position: relative;
+figure img {
+    display: block;
+    width: 100%;
+}
 
+figcaption {
+    text-align: center;
+    display: table-caption;
+    caption-side: bottom;
+}​
+
+why-does-this work {
+    /* Note to self: ask someone why red dots show up in the dev console and */
+    /* non of the clickable-entry rules work unless there is a string here. */
+}
+
+div.clickable-entry {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    position: relative;
+    h1, h2 , h3, h4, h5, h6, p {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
     a {
         position: absolute;
         width: 100%;

@@ -3,23 +3,19 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Recent Entries</h1>
+        </div>
+    </div>
+    {% for entry in entries %}
+        <div class="row clickable-entry">
             <div class="col-xs-12">
-                <h1>Recent Entries</h1>
+                <a target="_self" href="{% url 'blog_details' entry.year entry.month entry.day entry.slug %}"></a>
+                <h5>{{ entry.display_date }}</h5>
+                <h2>{{ entry.title }}</h2>
+                <span>{{ entry.body|striptags|truncatewords:50 }}</span>
             </div>
         </div>
-        {% for entry in entries %}
-            <div class="row row-entry">
-                <div class="col-xs-12">
-                    <div class="clickable-entry">
-                        <h5>{{ entry.display_date }}</h5>
-                        <a target="_self" href="{% url 'blog_details' entry.year entry.month entry.day entry.slug %}"></a>
-                        <h2>{{ entry.title }}</h2>
-                        <span>{{ entry.body|striptags|truncatewords:50 }}</span>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
 {% endblock content %}

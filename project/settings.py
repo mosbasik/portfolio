@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'project',
     'main',
     'compressor',
+    'markdown-figures',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,19 +117,14 @@ COMPRESS_PRECOMPILERS = (
 
 # Set up the Markdown field
 def custom_markup(markup):
-    print '\n\ncustom markup function called\n\n'
-    extension_configs = {
-        'markdown.extensions.codehilite': {
-            'pygments_style': 'default',
-        }
-    }
     extensions = [
         'markdown.extensions.codehilite',
+        'markdown-figures.captions',
+        'markdown.extensions.extra',
     ]
     return markdown.markdown(
         markup,
         extensions=extensions,
-        extension_configs=extension_configs,
     )
 
 
