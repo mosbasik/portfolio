@@ -215,16 +215,15 @@ html, body {
 
 @mixin accentize($accent1, $accent2, $accent3) {
     a {
-        color: $accent1;
         text-decoration: none;
-        h1,h2,h3,h4,h5,h6 {
-            color:$accent3;
-        }
-        &:active, &:visited, code.url {
+        &, &:active, &:visited, code.url {
             color: $accent3;
         }
         &:hover {
             color: $accent2;
+        }
+        h1,h2,h3,h4,h5,h6 {
+            color:$accent3;
         }
     }
     h1,h2,h3,h4,h5,h6 {
