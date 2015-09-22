@@ -11,12 +11,15 @@ import pytz
 
 
 def home(request):
-    return render(request, 'main/home.html')
+    context = {}
+    context['blogs'] = BlogEntry.get_ordered(count=3)
+    context['projects'] = ProjectEntry.get_ordered(count=3)
+    return render(request, 'main/home.html', context)
 
 
 def blog_list(request):
     context = {}
-    context['entries'] = BlogEntry.objects.all().order_by('-display_date')
+    context['entries'] = BlogEntry.get_ordered()
     return render(request, 'main/blog_list.html', context)
 
 
@@ -39,7 +42,7 @@ def blog_details(request, year, month, day, entry_slug):
 
 def project_list(request):
     context = {}
-    context['entries'] = ProjectEntry.objects.all().order_by('-display_date')
+    context['entries'] = ProjectEntry.get_ordered()
     return render(request, 'main/project_list.html', context)
 
 

@@ -7,7 +7,7 @@ from main.models import BlogEntry, ProjectEntry
 
 class BlogEntryAdmin(admin.ModelAdmin):
     ordering = ('-display_date',)
-    readonly_fields = ('created', 'modified', 'slug')
+    readonly_fields = ('created', 'modified', 'slug', 'url')
 
 
 admin.site.register(BlogEntry, BlogEntryAdmin)
@@ -15,7 +15,7 @@ admin.site.register(BlogEntry, BlogEntryAdmin)
 
 class ProjectEntryAdmin(admin.ModelAdmin):
     ordering = ('-display_date',)
-    readonly_fields = ('created', 'modified')
+    readonly_fields = ('created', 'modified', 'slug', 'url')
 
 
 admin.site.register(ProjectEntry, ProjectEntryAdmin)

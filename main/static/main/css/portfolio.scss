@@ -213,6 +213,7 @@ html, body {
 }
 
 
+// ==================== solarized accent colors ====================
 @mixin accentize($accent1, $accent2, $accent3) {
     a {
         text-decoration: none;
@@ -266,8 +267,7 @@ html, body {
     }
 }
 
-
-/* light is default mode, so pair with general html definition */
+// ==================== applying the themes ====================
 .light {
     @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03);
     @include accentize($blue, $yellow, $cyan);

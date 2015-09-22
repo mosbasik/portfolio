@@ -5,16 +5,101 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
-            <h1>Testing</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tristique facilisis fermentum. Pellentesque vel tortor vitae est hendrerit elementum et id dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris eget eleifend nunc. Integer consectetur faucibus sem, eu tempus est tincidunt id. Mauris mollis sit amet enim ac vehicula. Maecenas rutrum lacus non enim volutpat tincidunt. Nullam dignissim sit amet erat sit amet hendrerit. Morbi bibendum, arcu sed egestas sodales, massa est lacinia sapien, hendrerit suscipit ligula ante ut ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque eget euismod nunc, at rhoncus felis. Nunc convallis dapibus dui sit amet fringilla.</p>
+            <h1>Welcome</h1>
 
-            <p>Vivamus non justo interdum sapien euismod suscipit fermentum quis purus. Nulla facilisi. Aliquam fringilla velit elit. Suspendisse potenti. Morbi eleifend ligula iaculis, vehicula dolor at, tristique purus. Integer mollis ut lorem sit amet venenatis. Ut elementum justo sed tortor porta placerat.</p>
+            <figure class="right">
+                <a href="https://dl.dropboxusercontent.com/s/mzzpbphvs2l025u/portrait_home.png">
+                    <img alt="Peter Henry Portrait" title="I have probably not cut my hair since this picture was taken." src="https://dl.dropboxusercontent.com/s/mzzpbphvs2l025u/portrait_home.png" width="33%">
+                </a>
+                <figcaption>
+                </figcaption>
+            </figure>
 
-            <p>Ut faucibus est ac nibh congue tincidunt. Sed id lacus vitae erat viverra placerat. Ut volutpat lorem nulla, at porttitor felis congue vitae. Ut blandit aliquet molestie. In dui ipsum, scelerisque et mi et, ultrices lobortis purus. Praesent a metus eu nisi placerat maximus at id tortor. Etiam ac lacus augue. Duis non purus molestie, sollicitudin odio sit amet, rhoncus augue. Curabitur at nunc magna. Etiam aliquam diam quis purus dictum, vel ultricies velit congue.</p>
+            <p>
 
-            <p>Curabitur ut rutrum nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin quis sapien turpis. Quisque tempor mi risus, et tincidunt eros congue et. Etiam luctus dictum massa, eget mattis turpis. Etiam eu enim ut libero efficitur rhoncus quis vel purus. Nunc euismod sem et quam fringilla maximus. Proin id ex nec urna dignissim tincidunt vel at arcu. Pellentesque blandit turpis quis aliquet volutpat. Duis nec lorem at elit viverra elementum vitae vitae sem. Quisque malesuada, sapien eu consequat pulvinar, dui tellus hendrerit lorem, et commodo ante tortor sit amet ex. Mauris lacinia quis ex at scelerisque. Duis hendrerit dui vitae tincidunt feugiat. Nullam porttitor consequat purus ac vulputate. Nunc semper eros ac felis semper, at faucibus enim dictum. Quisque fringilla varius velit, vitae consequat mauris posuere quis.</p>
+            I program.  This site is where my thoughts and projects go.
 
-            <p>Morbi pulvinar sem eu sem luctus iaculis. Suspendisse fermentum ex ac velit pretium, quis gravida eros laoreet. In ultricies sed ex non dictum. Integer consectetur eleifend arcu, nec egestas odio varius eu. Quisque magna neque, tincidunt et ornare congue, fermentum quis quam. Quisque ut urna ante. Sed maximus arcu ligula, ac ultrices libero consequat vel. In non nisl egestas, porta lacus quis, sagittis sapien. Donec finibus tellus sit amet sagittis finibus. Vivamus a tempor enim, in mattis nisl. Aliquam eros ipsum, tempor quis ultrices non, feugiat non arcu. Mauris finibus eros mi, vel vestibulum ex blandit sed. Fusce quis tristique elit. Nulla nibh nisl, mollis sit amet congue sit amet, mollis sed tellus.</p>
+            </p>
+            <p>
+
+            I'm  interested in a little bit of everything.
+
+            </p>
+            <p>
+
+            Some interests are more technical - software architecture, security, web
+            development, mobile app development, user interface design and
+            virtual economies, to name a few.
+
+            </p>
+            <p>
+
+            Others are more free-form - group dynamics, dance, music
+            production, game design, long hair, bicycling, nutrition, and sleep
+            theory.
+
+            </p>
+            <p>
+
+            This blog is likely to be a fair mix between the two. (Eventually I
+            might even make a tagging system so it's possible to find one or the
+            other!)
+
+            </p>
+            <p>
+
+            Since I've only recently published this site, parts of it are
+            likely to be under construction for a while.  I have a number of
+            ideas that I would like to implement as I have time - so please
+            forgive any unpolished sections.
+
+            </p>
+
+        </div>
+
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Recent Blogs</h2>
+            {% for blog in blogs %}
+                <div class="row clickable-entry">
+                    <div class="col-xs-12">
+                        <a target="_self" href="{% url 'blog_details' blog.year blog.month blog.day blog.slug %}"></a>
+                        <h5>{{ blog.display_date }}</h5>
+                        <h2>{{ blog.title }}</h2>
+                        <span>{{ blog.body|striptags|truncatewords:50 }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="pull-right" target="_self" href="{% url 'blog_list' %}">See more blog entries -></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden-md hidden-lg">
+            <hr>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Projects</h2>
+            {% for project in projects %}
+                <div class="row clickable-entry">
+                    <div class="col-xs-12">
+                        <a target="_self" href="{% url 'project_details' project.year project.month project.day project.slug %}"></a>
+                        <h5>{{ project.display_date }}</h5>
+                        <h2>{{ project.title }}</h2>
+                        <span>{{ project.body|striptags|truncatewords:50 }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="pull-right" target="_self" href="{% url 'project_list' %}">See more projects -></a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}
