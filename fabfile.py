@@ -24,6 +24,12 @@ def pull():
         run('git pull')
 
 
+def install_requirements():
+    '''Install the pip requirements listed in the reqs.txt file.'''
+    with virtualenv():
+        run('pip install -r reqs.txt')
+
+
 def collect_static():
     '''Collect all static files and put in static root for Apache.'''
     with virtualenv():
@@ -37,5 +43,6 @@ def restart_apache():
 
 def deploy():
     pull()
+    install_requirements()
     collect_static()
     restart_apache()
