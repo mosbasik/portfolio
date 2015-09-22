@@ -74,7 +74,11 @@
             {% endfor %}
             <div class="row">
                 <div class="col-xs-12">
-                    <a class="pull-right" target="_self" href="{% url 'blog_list' %}">See more blog entries -></a>
+                    {% if blogs.count > 0 %}
+                        <a class="pull-right" target="_self" href="{% url 'blog_list' %}">See more blog entries -></a>
+                    {% else %}
+                        <p>No blog entries yet.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -97,7 +101,11 @@
             {% endfor %}
             <div class="row">
                 <div class="col-xs-12">
-                    <a class="pull-right" target="_self" href="{% url 'project_list' %}">See more projects -></a>
+                    {% if projects.count > 0 %}
+                        <a class="pull-right" target="_self" href="{% url 'project_list' %}">See more projects -></a>
+                    {% else %}
+                        <p>No projects yet.</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
