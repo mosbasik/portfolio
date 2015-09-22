@@ -2,7 +2,7 @@
 from django.contrib import admin
 
 # local imports
-from main.models import BlogEntry, ProjectEntry
+from main.models import BlogEntry, ProjectEntry, LocalFile
 
 
 class BlogEntryAdmin(admin.ModelAdmin):
@@ -19,3 +19,6 @@ class ProjectEntryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProjectEntry, ProjectEntryAdmin)
+
+
+admin.site.register(LocalFile)

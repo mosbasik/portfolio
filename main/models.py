@@ -81,3 +81,10 @@ class ProjectEntry(Entry):
 
     def __unicode__(self):
         return "Project {}".format(self.title)
+
+
+class LocalFile(models.Model):
+    contents = models.FileField()
+
+    def __unicode__(self):
+        return self.contents.name
