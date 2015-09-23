@@ -121,6 +121,7 @@ def custom_markup(markup):
         'markdown.extensions.codehilite',
         'markdown-figures.captions',
         'markdown.extensions.extra',
+        'markdown.extensions.def_list',
     ]
     return markdown.markdown(
         markup,

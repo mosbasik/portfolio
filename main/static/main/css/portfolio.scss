@@ -130,13 +130,15 @@ html, body {
     code, pre {
         border: none;
         font-family: anonymous-pro;
+        font-size: 115%;
         border-radius: 0px;
+        color:$rebase0;
     }
     code, .linenos pre {
         background-color: $rebase02;
     }
     .codehilite pre {
-        background-color: $rebase03;
+        background-color: $rebase02;
     }
     .codehilite {
         background-color: $rebase03; color: $rebase0;
@@ -351,4 +353,16 @@ div.clickable-entry {
 
 .btn {
     border-radius: 0px;
+}
+
+table {
+    width: 750px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    pre {
+        margin: 0px;
+    }
 }
