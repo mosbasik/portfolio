@@ -72,6 +72,30 @@ class Entry(MarkupBlock):
             return None
         return qs.order_by('-display_date')[:count]
 
+    @property
+    def next(self):
+        next_entries = self.__class__.objects.filter(
+            display=True,
+            display_date__gt=self.display_date,
+        ).order_by('display_date')
+        try:
+            print next_entries[0]
+            return next_entries[0]
+        except IndexError:
+            return None
+
+    @property
+    def previous(self):
+        previous_entries = self.__class__.objects.filter(
+            display=True,
+            display_date__lt=self.display_date,
+        ).order_by('-display_date')
+        try:
+            print previous_entries[0]
+            return previous_entries[0]
+        except IndexError:
+            return None
+
 
 class Blog(Entry):
 

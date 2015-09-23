@@ -9,5 +9,22 @@
             <h1>{{ entry.title }}</h1>
             {{ entry.body }}
         </div>
+        <div class="col-xs-12 details-footer">
+            {% with entry.next as next %}
+                {% if next %}
+                    <span class="pull-left"><a target="_self" href="{% url 'project_details' next.year next.month next.day next.slug %}">&lt;- {{ next.title }}</a></span>
+                {% else %}
+                    <span class="pull-left">No newer projects.</span>
+                {% endif %}
+            {% endwith %}
+
+            {% with entry.previous as previous %}
+                {% if previous %}
+                    <span class="pull-right"><a target="_self" href="{% url 'project_details' previous.year previous.month previous.day previous.slug %}">{{ previous.title }} -&gt;</a></span>
+                {% else %}
+                    <span class="pull-right">No older projects.</span>
+                {% endif %}
+            {% endwith %}
+        </div>
     </div>
 {% endblock content %}

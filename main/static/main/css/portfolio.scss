@@ -63,7 +63,7 @@ html, body {
     position: relative;
 }
 #content {
-    padding-bottom: 150px; /* Height of the footer */
+    padding-bottom: 100px; /* Height of the footer */
 }
 #footer {
     position: absolute;
@@ -365,4 +365,9 @@ table {
     pre {
         margin: 0px;
     }
+}
+
+.details-footer {
+    margin-top: 50px;
+    margin-bottom: -30px;
 }
