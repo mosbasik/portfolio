@@ -11,12 +11,4 @@ During high school I took several Java courses, and also did all of the classic 
 Now, after some years in college, I've got a decent amount of experience in a number of languages and quite a lot of algorithm theory under my belt.  I've gotten _a lot of practice_ reading documentation.  And with all that, I still crash my computer a couple times a year by messing around with the internals - and have fun doing it.
 
 
-[congo]: https://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo "Wikipedia: Democratic Republic of the Congo"
-
-[rva]: http://www.rva.org/ "RVA: Shaping Lives to Change the World"
-
-[kenya]: https://en.wikipedia.org/wiki/Kenya "Wikipedia: Kenya"
-
-[caltech]: http://www.caltech.edu/ "California Institute of Technology"
-
 [pascal]: https://en.wikipedia.org/wiki/Turbo_Pascal "Wikipedia: Turbo Pascal"
