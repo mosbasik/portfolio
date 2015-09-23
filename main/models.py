@@ -8,13 +8,38 @@ from autoslug import AutoSlugField
 from markupfield.fields import MarkupField
 
 
-class Entry(models.Model):
+class MarkupBlock(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    display_date = models.DateTimeField()
+    body = MarkupField(markup_type='custom_markup', null=True, blank=True)
+
+    def __unicode__(self):
+        return str(self.body)
+
+
+class TextBlock(MarkupBlock):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    @staticmethod
+    def get(name, heading=None):
+        block_heading = '' if heading is None else heading
+        try:
+            return TextBlock.objects.get(name=name)
+        except TextBlock.DoesNotExist:
+            textblock, created = TextBlock.objects.get_or_create(
+                name='_default_%s' % name,
+                body='%s\n\nSection is under development.' % block_heading
+            )
+            return textblock
+
+
+class Entry(MarkupBlock):
     title = models.CharField(max_length=255)
     slug = AutoSlugField(populate_from='title')
-    body = MarkupField(markup_type='custom_markup', null=True, blank=True)
+    display_date = models.DateTimeField()
     display = models.BooleanField(default=False)
 
     class Meta:
@@ -36,51 +61,32 @@ class Entry(models.Model):
         return self.display_date.strftime('%d')
 
     @classmethod
-    def get_ordered(cls, scope='displayed', count=None):
-        if scope not in ['displayed', 'all']:
+    def get_ordered(cls, display=None, count=None):
+        if display is None:
+            qs = cls.objects.all()
+        elif display is True:
+            qs = cls.objects.filter(diplay=True)
+        elif display is False:
+            qs = cls.objects.filter(display=False)
+        else:
             return None
-
-        if scope == 'displayed':
-            return cls.objects.filter(display=True).order_by('-display_date')[:count]
-        return cls.objects.all().order_by('-display_date')[:count]
-
-    # @classmethod
-    # def url(cls):
-    #     base_url = None
-    #     if cls == BlogEntry:
-    #         base_url = 'blog_details'
-    #     elif cls == ProjectEntry:
-    #         base_url = 'project_details'
-    #     url = reverse(base_url, args=(self.year, self.month, self.day, self.slug))
-    #     return format_html('<a target="_blank" href="{url}">{url}</a>', url=url)
+        return qs.order_by('-display_date')[:count]
 
 
-class BlogEntry(Entry):
+class Blog(Entry):
 
     @property
     def url(self):
         url = reverse('blog_details', args=(self.year, self.month, self.day, self.slug))
         return format_html('<a target="_blank" href="{url}">{url}</a>', url=url)
 
-    class Meta:
-        verbose_name_plural = "Blog Entries"
 
-    def __unicode__(self):
-        return "Blog {}".format(self.title)
-
-
-class ProjectEntry(Entry):
+class Project(Entry):
 
     @property
     def url(self):
         url = reverse('project_details', args=(self.year, self.month, self.day, self.slug))
         return format_html('<a target="_blank" href="{url}">{url}</a>', url=url)
-
-    class Meta:
-        verbose_name_plural = "Project Entries"
-
-    def __unicode__(self):
-        return "Project {}".format(self.title)
 
 
 class LocalFile(models.Model):

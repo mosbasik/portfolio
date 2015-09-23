@@ -2,23 +2,32 @@
 from django.contrib import admin
 
 # local imports
-from main.models import BlogEntry, ProjectEntry, LocalFile
+from main.models import TextBlock, Blog, Project, LocalFile
 
 
-class BlogEntryAdmin(admin.ModelAdmin):
+class TextBlockAdmin(admin.ModelAdmin):
+    ordering = ('name',)
+    readonly_fields = ('created', 'modified')
+    fields = ('created', 'modified', 'name', 'body')
+
+
+admin.site.register(TextBlock, TextBlockAdmin)
+
+
+class BlogAdmin(admin.ModelAdmin):
     ordering = ('-display_date',)
     readonly_fields = ('created', 'modified', 'slug', 'url')
 
 
-admin.site.register(BlogEntry, BlogEntryAdmin)
+admin.site.register(Blog, BlogAdmin)
 
 
-class ProjectEntryAdmin(admin.ModelAdmin):
+class ProjectAdmin(admin.ModelAdmin):
     ordering = ('-display_date',)
     readonly_fields = ('created', 'modified', 'slug', 'url')
 
 
-admin.site.register(ProjectEntry, ProjectEntryAdmin)
+admin.site.register(Project, ProjectAdmin)
 
 
 admin.site.register(LocalFile)
