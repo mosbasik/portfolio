@@ -1,0 +1,7 @@
+<div class="col-xs-6">
+    {% if previous %}
+        <div class="pull-right"><a target="_self" href="{% url url_name previous.year previous.month previous.day previous.slug %}">{{ previous.title }} -&gt;</a></div>
+    {% else %}
+        <div class="pull-right">No older {{ plural_model_name }}.</div>
+    {% endif %}
+</div>

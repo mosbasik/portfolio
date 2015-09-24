@@ -43,7 +43,12 @@ def blog_details(request, year, month, day, entry_slug):
 
     try:
         context = {}
-        context['entry'] = entries.get(slug=entry_slug)
+        entry = entries.get(slug=entry_slug)
+        context['entry'] = entry
+        context['next'] = entry.next
+        context['previous'] = entry.previous
+        context['url_name'] = 'blog_details'
+        context['plural_model_name'] = 'blogs'
         return render(request, 'main/blog_details.html', context)
 
     except Blog.DoesNotExist:
@@ -66,7 +71,12 @@ def project_details(request, year, month, day, entry_slug):
 
     try:
         context = {}
-        context['entry'] = entries.get(slug=entry_slug)
+        entry = entries.get(slug=entry_slug)
+        context['entry'] = entry
+        context['next'] = entry.next
+        context['previous'] = entry.previous
+        context['url_name'] = 'project_details'
+        context['plural_model_name'] = 'projects'
         return render(request, 'main/project_details.html', context)
 
     except Project.DoesNotExist:

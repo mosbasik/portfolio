@@ -1,0 +1,7 @@
+<div class="col-xs-6">
+    {% if next %}
+        <div class="pull-left"><a target="_self" href="{% url url_name next.year next.month next.day next.slug %}">&lt;- {{ next.title }}</a></div>
+    {% else %}
+        <div class="pull-left">No newer {{ plural_model_name }}.</div>
+    {% endif %}
+</div>
